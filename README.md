@@ -1,1 +1,1 @@
-# AWS SERVERLESS LMBDA PRACTICE (with. inflearn)
+# AWS SERVERLESS LAMBDA PRACTICE (with. inflearn)
