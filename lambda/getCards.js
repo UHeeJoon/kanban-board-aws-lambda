@@ -4,9 +4,7 @@ import {
   ScanCommand,
 } from "@aws-sdk/lib-dynamodb";
 
-const client = new DynamoDBClient({
-  apiVersion: "2024-05-06"
-});
+const client = new DynamoDBClient({});
 const documentClient = DynamoDBDocumentClient.from(client);
 const tableName = "Cards";
 
