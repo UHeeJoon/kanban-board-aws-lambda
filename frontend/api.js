@@ -37,11 +37,18 @@ export default class APIHandler {
 
   // TODO: ID로 카드 검색 후 내용,카테고리 수정
   async putCard(cardObj) {
-    this.dummyData = this.dummyData.map(card => {
-      return card.id === cardObj.id
-        ? { ...card, category: cardObj.category, title: cardObj.title }
-        : card;
-    });
+    // this.dummyData = this.dummyData.map(card => {
+    //   return card.id === cardObj.id
+    //     ? { ...card, category: cardObj.category, title: cardObj.title }
+    //     : card;
+    // });
+//  customized : filter 추가
+    this.dummyData = this.dummyData
+    .filter(card => card.id === cardObj.id)
+    .map(card => 
+      ({ ...card, category: cardObj.category, title: cardObj.title })
+    );
+
     console.log(this.dummyData)
   }
 
