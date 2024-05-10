@@ -13,6 +13,7 @@ console.log("Received: " + JSON.stringify(event, null, 2));
   let statusCode = 200;
   const headers = {
     "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
   };
 
   try {
@@ -39,7 +40,7 @@ console.log("Received: " + JSON.stringify(event, null, 2));
 
   return {
     statusCode,
-    body,
     headers,
+    body,
   };
 };

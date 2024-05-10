@@ -14,14 +14,15 @@ export default class APIHandler {
 
   // TODO: 카드 객체 생성/추가 후 ID 반환
   async postCard(cardObj) {
-    let id = Math.round(Math.random() * 10000).toString();
-    this.dummyData.push({
-      id: id,
+    const request = new APIRequest("POST", "/kanban/cards", {
       title: cardObj.title,
       category: cardObj.category
-    });
-    console.log(this.dummyData);
-    return id;    
+    });  
+    const response = await APIProcessor(request);
+    if( response !== "Error"){
+      console.log(response.id)
+      return response.id;
+    }
   }
 
   // TODO: ID로 카드 검색 후 내용,카테고리 수정
