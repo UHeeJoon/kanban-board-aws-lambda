@@ -27,12 +27,11 @@ export default class APIHandler {
 
   // TODO: ID로 카드 검색 후 내용,카테고리 수정
   async putCard(cardObj) {
-    this.dummyData = this.dummyData.map(card => {
-      return card.id === cardObj.id
-        ? { ...card, category: cardObj.category, title: cardObj.title }
-        : card;
-    });
-    console.log(this.dummyData)
+    const request = new APIRequest("PUT", `/kanban/cards/${cardObj.id}`, {
+      title: cardObj.title,
+      category: cardObj.category
+    });  
+    await APIProcessor(request);
   }
 
   // TODO: ID로 카드 검색 후 삭제
