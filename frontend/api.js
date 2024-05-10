@@ -70,8 +70,15 @@ const APIProcessor = async (request) => {
   
     })
     switch (response.status) {
+      // ok
       case 200:
         return response.json();
+      // created 
+      case 201:
+        return response.json();
+      // no-content
+      case 204:
+        return null;
       default:
         return response.json();
     }

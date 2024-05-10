@@ -33,7 +33,7 @@ export const handler = async (event) => {
     console.log(err)
   } 
   return {
-    statusCode:200,
+    statusCode:204,
     headers: {
       "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
     }

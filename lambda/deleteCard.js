@@ -19,7 +19,7 @@ export const handler = async (event) => {
       },
     };
     await documentClient.send(new DeleteCommand(params));
-    response = {statusCode: 200,}
+    response = {statusCode: 204,}
   } catch (err) {
     console.log(err)
     response = {

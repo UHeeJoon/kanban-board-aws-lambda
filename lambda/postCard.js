@@ -10,7 +10,7 @@ const tableName = "Cards";
 export const handler = async event => {
 console.log("Received: " + JSON.stringify(event, null, 2));
   let body;
-  let statusCode = 200;
+  let statusCode = 201;
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
