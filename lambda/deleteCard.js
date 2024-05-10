@@ -9,7 +9,11 @@ const tableName = "Cards";
 
 export const handler = async (event) => {
   console.log("Received: " + JSON.stringify(event, null, 2));
-  let response = "";
+  let statusCode = 204;
+  let headers =  {
+    "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
+  }
+  let body = "";
   try {
     const id = event.pathParameters.id;
     const params = {
@@ -19,13 +23,14 @@ export const handler = async (event) => {
       },
     };
     await documentClient.send(new DeleteCommand(params));
-    response = {statusCode: 204,}
   } catch (err) {
-    console.log(err)
-    response = {
-        statusCode: 500, 
-        body: JSON.stringify({"Message" : err}),
-    }
+      console.log(err)
+      statusCode= 500;
+      body =JSON.stringify({"Message" : err});
   } 
-  return response;
+  return {
+    statusCode,
+    headers,
+    body
+  };
 };
