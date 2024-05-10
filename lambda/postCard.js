@@ -33,7 +33,6 @@ console.log("Received: " + JSON.stringify(event, null, 2));
     body =  { id };
   } catch (err) {
     statusCode = 400;
-    body = err.message;
   } finally {
     body = JSON.stringify(body);
   }

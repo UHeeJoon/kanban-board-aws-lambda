@@ -26,7 +26,6 @@ export const handler = async (event) => {
   } catch (err) {
       console.log(err)
       statusCode= 500;
-      body =JSON.stringify({"Message" : err});
   } 
   return {
     statusCode,

@@ -9,6 +9,10 @@ const tableName = "Cards";
 
 export const handler = async (event) => {
   console.log("Received: " + JSON.stringify(event, null, 2));
+  let statusCode = 204;
+  let headers = {
+    "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
+  }
   try {
     const requestJSON = JSON.parse(event.body);
     const id = event.pathParameters.id;
@@ -30,12 +34,11 @@ export const handler = async (event) => {
     };
     await documentClient.send(new UpdateCommand(params));
   } catch (err) {
+    statusCode=500;
     console.log(err)
   } 
   return {
-    statusCode:204,
-    headers: {
-      "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
-    }
+    statusCode,
+    headers,
   }
 };
