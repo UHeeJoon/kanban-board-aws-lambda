@@ -4,11 +4,12 @@ export default class APIHandler {
 
   // TODO: 전체 카드 객체 리스트 반환. 없으면 NULL
   async getCards() {
-    if (this.dummyData.length === 0) {
-      return null;
-    } else {
-      return this.dummyData;
+    const request = new APIRequest("GET", "/kanban/cards");
+    const response = await APIProcessor(request);
+    if( response !== "Error"){
+      return response;
     }
+    return null;
   }
 
   // TODO: 카드 객체 생성/추가 후 ID 반환
@@ -56,16 +57,27 @@ class APIRequest {
 }
 // TODO: API 호출 함수
 const APIProcessor = async (request) => {
-  const response = await fetch(request.url, {
-    method: request.method,
-    mode: "cors",
-    cache: "no-cache",
-    headers : {
-      "Content-type" : "application/json",
-      "Accept" : "application/json"
-    },
-    body: request.body ? JSON.stringify(request.body) : null
-
-  })
+  try {
+    const response = await fetch(request.url, {
+      method: request.method,
+      mode: "cors",
+      cache: "no-cache",
+      headers : {
+        "Content-Type" : "application/json",
+        "Accept" : "application/json"
+      },
+      body: request.body ? JSON.stringify(request.body) : null
+  
+    })
+    switch (response.status) {
+      case 200:
+        return response.json();
+      default:
+        return response.json();
+    }
+  } catch(err) {
+    console.error(err)
+  }
+  return "Error";
 }
  
