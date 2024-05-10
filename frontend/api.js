@@ -1,17 +1,5 @@
 export default class APIHandler {
   constructor() {
-    this.dummyData = [
-      {
-        id: "abc123",
-        title: "데이터베이스 구축하기",
-        category: "ongoing"
-      },
-      {
-        id: "def456",
-        title: "데이터베이스 삭제하기",
-        category: "todo"
-      }
-    ];
   }
 
   // TODO: 전체 카드 객체 리스트 반환. 없으면 NULL
@@ -53,6 +41,31 @@ export default class APIHandler {
     console.log(this.dummyData);
   }
 
-  // TODO: API 요청 컨테이너. Method, Path, Body 속성
-  // TODO: API 호출 함수
 }
+
+const BASE_URL = "https://2x3itr9vce.execute-api.ap-northeast-2.amazonaws.com/prod"
+
+// TODO: API 요청 컨테이너. Method, Path, Body 속성
+class APIRequest {
+  constructor(method, path, body = null) {
+    this.method = method;
+    this.url = BASE_URL + path;
+    this.body = body;
+  }
+  
+}
+// TODO: API 호출 함수
+const APIProcessor = async (request) => {
+  const response = await fetch(request.url, {
+    method: request.method,
+    mode: "cors",
+    cache: "no-cache",
+    headers : {
+      "Content-type" : "application/json",
+      "Accept" : "application/json"
+    },
+    body: request.body ? JSON.stringify(request.body) : null
+
+  })
+}
+ 
